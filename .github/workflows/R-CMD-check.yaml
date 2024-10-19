@@ -53,6 +53,9 @@ jobs:
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
+        run: |
+          # Add the appropriate commands to install system dependencies here
+          echo "Linux setup"
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
 
