@@ -11,7 +11,7 @@ if [[ $TRAVIS -eq true ]] ; then
 fi
 cd ./src
 itkgit=https://github.com/InsightSoftwareConsortium/ITK
-itktag=15af3aed65693811448c9af22ce9d09ff9f3000a
+itktag=4f6bdcb9887fef6e3bed6d43d97447e7c7abe1bb
 # if there is a directory but no git,
 # remove it
 if [[ -d itks ]]; then
@@ -73,8 +73,10 @@ fi
 
 ${cmaker} \
     -DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}" \
+    -DCMAKE_CXX_STANDARD="17"\
+    -DCMAKE_CXX_STANDARD_REQUIRED="YES"\
     -DCMAKE_C_FLAGS="${CMAKE_C_FLAGS} ${compflags} -DNDEBUG  "\
-    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} ${compflags} -DNDEBUG  "\
+    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} ${compflags} -DNDEBUG -isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -stdlib=libc++ "\
     -DITK_USE_GIT_PROTOCOL:BOOL=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTING:BOOL=OFF \
